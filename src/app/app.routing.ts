@@ -3,10 +3,11 @@ import {EmailComponent} from './authentication/email/email.component';
 import {NotFoundComponent} from './shared/not-found/not-found.component';
 import {NgModule} from '@angular/core';
 import {AuthGuardService} from './authentication/auth-guard.service';
+import {PasswordComponent} from './authentication/password/password.component';
 
 const routes: Route[] = [
   {path: 'login/email', component: EmailComponent, canActivate: [AuthGuardService]},
-  {path: 'login/password', component: EmailComponent, canActivate: [AuthGuardService]},
+  {path: 'login/password', component: PasswordComponent, canActivate: [AuthGuardService]},
   {path: 'search', component: EmailComponent, canActivate: [AuthGuardService]},
   {path: 'video/:id', component: EmailComponent, canActivate: [AuthGuardService]},
   {path: 'not-found', component: NotFoundComponent},
@@ -23,4 +24,5 @@ const routes: Route[] = [
   ]
 })
 
-export class AppRoutingModule {}
+export class AppRoutingModule {
+}

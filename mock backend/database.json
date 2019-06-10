@@ -1,0 +1,16 @@
+{
+  "users": [
+    {
+      "email": "randomEmail@op.pl",
+      "password": "123"
+    },
+        {
+      "email": "123@123",
+      "password": "123"
+    },
+        {
+      "email": "test@test",
+      "password": "123"
+    }
+  ]
+}

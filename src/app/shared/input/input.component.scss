@@ -1,0 +1,27 @@
+@import '../config';
+
+.input-box {
+  display: flex;
+  flex-direction: column;
+
+  .input {
+    padding: 10px 20px;
+    border: 1px solid black;
+    border-radius: 3px;
+    color: $font-primary;
+    font-size: 1.25rem;
+
+    &::placeholder {
+      font-size: 1.25rem;
+      color: $font-secondary;
+    }
+  }
+
+  .error {
+    border-color: $input-error;
+  }
+
+  .error-message {
+    color: $input-error;
+  }
+}

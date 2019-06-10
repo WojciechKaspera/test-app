@@ -1,15 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 
 @Component({
   selector: 'app-input',
   templateUrl: './input.component.html',
   styleUrls: ['./input.component.scss']
 })
-export class InputComponent implements OnInit {
+export class InputComponent {
 
-  constructor() { }
+  @Input() errorMessage: string;
+  @Input() placeholder: string;
 
-  ngOnInit() {
+  @Output() keyupEvent: EventEmitter<KeyboardEvent> = new EventEmitter();
+
+  constructor() {
+  }
+
+  onKeyup(event: KeyboardEvent) {
+    this.keyupEvent.emit(event);
   }
 
 }

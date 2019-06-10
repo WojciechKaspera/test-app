@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {AuthenticationService} from '../authentication.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-password',
@@ -7,9 +9,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PasswordComponent implements OnInit {
 
-  constructor() { }
+  inputErrorMessage: string;
 
-  ngOnInit() {
+  constructor(private authenticationService: AuthenticationService, private router: Router) {
   }
 
+  onKeyup() {
+    const inputValue = event.target.value;
+    this.authenticationService.credentials.password = inputValue;
+  }
+
+  login() {
+
+  }
+
+  ngOnInit() {
+    if (!this.authenticationService.credentials.email) {
+      this.router.navigateByUrl('login/email');
+    }
+  }
 }

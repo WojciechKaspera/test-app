@@ -1,3 +1,4 @@
-<p>
-  input works!
-</p>
+<div class="input-box">
+  <input id="input" type="text" class="input" placeholder="{{placeholder}}" (keyup)="onKeyup($event)" [class.error]="errorMessage">
+  <p class="error-message" *ngIf="errorMessage">{{errorMessage}}</p>
+</div>

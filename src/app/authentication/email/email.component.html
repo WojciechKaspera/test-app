@@ -1,3 +1,5 @@
-<p>
-  email works!
-</p>
+<section class="email-section">
+  <p class="input-label">Enter your email address:</p>
+  <app-input [errorMessage]="inputErrorMessage" [placeholder]="'email'" (keyupEvent)="onKeyup($event)"></app-input>
+  <app-button [label]="'Continue'" (clickEvent)="continue()"></app-button>
+</section>
