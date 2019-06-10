@@ -9,6 +9,7 @@ export class InputComponent {
 
   @Input() errorMessage: string;
   @Input() placeholder: string;
+  @Input() type: string;
 
   @Output() keyupEvent: EventEmitter<KeyboardEvent> = new EventEmitter();
 

@@ -29,13 +29,14 @@ export class EmailComponent {
 
   onKeyup(event: KeyboardEvent) {
     const inputValue = event.target.value;
-    this.isEmailValid = this.emailRegex.test(inputValue);
+    this.isEmailValid = this.emailRegex.test(inputValue) && inputValue.length > 2;
     if (event.key === 'Enter' && this.isEmailValid) {
+      this.authenticationService.credentials.email = inputValue;
       this.continue();
       return;
     }
     this.inputErrorMessage = '';
-    if (inputValue.length > 2) {
+    if (this.isEmailValid) {
       clearTimeout(this.emailInputTimeout);
       this.emailInputTimeout = setTimeout(() => {
         if (this.isEmailValid) {

@@ -19,17 +19,22 @@ app.use(cors({
 }));
 
 app.post('/email', checkIfEmailExist);
+app.post('/login', login);
 
 function checkIfEmailExist(req, res) {
   const email = req.body.email;
   db.users.map(user => {
     if (user.email === email) {
       res.status(200).send();
-      res.end();
     }
   });
   res.status(404).send();
-  res.end();
+}
+
+function login(req, res) {
+  const credentials = {...req.body};
+  db.users.find(user => user.email === credentials.email).password === credentials.password ? res.status(200) : res.status(403);
+  res.send();
 }
 
 app.listen(4201, () => console.log('Mock backend running on port 4201'));

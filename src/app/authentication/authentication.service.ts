@@ -24,4 +24,8 @@ export class AuthenticationService {
     return this.http.post('http://localhost:4201/email', {email: this.credentials.email});
   }
 
+  login() {
+    return this.http.post('http://localhost:4201/login', {...this.credentials});
+  }
+
 }
