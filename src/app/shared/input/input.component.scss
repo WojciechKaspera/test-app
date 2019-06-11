@@ -3,6 +3,7 @@
 .input-box {
   display: flex;
   flex-direction: column;
+  position: relative;
 
   .input {
     padding: 10px 20px;

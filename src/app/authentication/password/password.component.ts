@@ -28,7 +28,8 @@ export class PasswordComponent implements OnInit {
   login() {
     this.authenticationService.login().subscribe(
       () => {
-        console.log('successfully loged in');
+        this.authenticationService.authenticationStatus = true;
+        this.router.navigateByUrl('search');
       },
       (err) => {
         this.inputErrorMessage = 'Incorrect password!';
