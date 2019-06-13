@@ -1,5 +1,5 @@
 import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {SearchResult} from '../shared/interfaces';
 import {SearchService} from '../search/search.service';
 
@@ -12,12 +12,26 @@ export class VideoComponent implements OnInit {
 
   @Input() video: SearchResult;
 
-  constructor(private route: ActivatedRoute, private searchService: SearchService) {
+  constructor(private route: ActivatedRoute, private searchService: SearchService, private router: Router) {
+  }
+
+  logout() {
+    this.router.navigateByUrl(`/search/${this.searchService.searchQuery}`);
   }
 
   ngOnInit() {
     const videoId = this.route.snapshot.params.id;
-    this.video = this.searchService.searchResults.find((searchResult: SearchResult) => searchResult.id === videoId);
+    if (this.searchService.searchResults) {
+      this.video = this.searchService.searchResults.find((searchResult: SearchResult) => searchResult.id === videoId);
+    } else {
+    }
+    this.searchService.searchById(videoId).subscribe(
+      (res: any) => this.video = {
+        title: res.items[0].snippet.title,
+        description: res.items[0].snippet.description,
+        thumbnail: res.items[0].snippet.thumbnails.default,
+        id: res.items[0].id.videoId
+      });
   }
 
 }

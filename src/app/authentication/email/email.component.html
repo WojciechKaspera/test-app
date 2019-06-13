@@ -1,5 +1,5 @@
 <section class="email-section">
   <p class="input-label">Enter your email address:</p>
-  <app-input [type]="'text'" [errorMessage]="inputErrorMessage" [placeholder]="'email'" (keyupEvent)="onKeyup($event)"></app-input>
+  <app-input [autofocus]="true" [type]="'text'" [errorMessage]="inputErrorMessage" [placeholder]="'email'" (keyupEvent)="onKeyup($event)"></app-input>
   <app-button [label]="'Continue'" (clickEvent)="continue()" [isDisabled]="!isEmailValid"></app-button>
 </section>

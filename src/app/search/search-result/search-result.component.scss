@@ -2,12 +2,18 @@
   border: 1px solid grey;
   border-radius: 3px;
   padding: 20px;
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 30px;
 
   .video-title {
     font-weight: 600;
+    margin-top: 0;
   }
 
   .video-details {
     display: flex;
+    align-items: center;
+    justify-content: space-around;
   }
 }

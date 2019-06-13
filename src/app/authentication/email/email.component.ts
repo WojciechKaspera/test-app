@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {AuthenticationService} from '../authentication.service';
 import {Router} from '@angular/router';
 
@@ -7,7 +7,7 @@ import {Router} from '@angular/router';
   templateUrl: './email.component.html',
   styleUrls: ['./email.component.scss']
 })
-export class EmailComponent {
+export class EmailComponent implements OnInit {
 
   emailInputTimeout: number;
   inputErrorMessage: string;

@@ -1,5 +1,6 @@
+<app-header (logoutEvent)="logout()"></app-header>
 <div class="search-input-box">
-  <app-input [type]="'text'" [placeholder]="'What video are you looking for?'" (keyupEvent)="onKeyup($event)">
+  <app-input [autofocus]="true" [type]="'text'" [placeholder]="'What video are you looking for?'" (keyupEvent)="onKeyup($event)">
     <img src="../../assets/images/search-icon.svg" class="search-icon" (click)="search()">
   </app-input>
 </div>

@@ -9,6 +9,7 @@ export class ButtonComponent {
 
   @Input() label: string;
   @Input() isDisabled: string;
+  @Input() theme: string;
 
   @Output() clickEvent: EventEmitter<null> = new EventEmitter();
 

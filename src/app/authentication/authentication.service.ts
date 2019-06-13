@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {of} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
+import {Router} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -13,11 +14,24 @@ export class AuthenticationService {
     password: ''
   };
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
   }
 
   isAuthenticated() {
+    this.authenticationStatus = this.loadTokenFromLocalStorage();
     return of(this.authenticationStatus);
+  }
+
+  saveTokenToLocalStorage() {
+    localStorage.setItem('token', 'Fabulous token');
+  }
+
+  loadTokenFromLocalStorage() {
+    return localStorage.getItem('token') === 'Fabulous token';
+  }
+
+  removeTokenFromLocalStorage() {
+    localStorage.removeItem('token');
   }
 
   checkEmail() {
@@ -26,6 +40,12 @@ export class AuthenticationService {
 
   login() {
     return this.http.post('http://localhost:4201/login', {...this.credentials});
+  }
+
+  logout() {
+    this.removeTokenFromLocalStorage();
+    this.authenticationStatus = false;
+    this.router.navigateByUrl('login/email');
   }
 
 }

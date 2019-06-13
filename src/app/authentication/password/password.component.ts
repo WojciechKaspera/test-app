@@ -29,6 +29,7 @@ export class PasswordComponent implements OnInit {
     this.authenticationService.login().subscribe(
       () => {
         this.authenticationService.authenticationStatus = true;
+        this.authenticationService.saveTokenToLocalStorage();
         this.router.navigateByUrl('search');
       },
       (err) => {

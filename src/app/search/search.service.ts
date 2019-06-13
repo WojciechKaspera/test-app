@@ -9,16 +9,19 @@ export class SearchService {
 
   apiKey = 'AIzaSyAAXzkAfBkVJ8BLHURcqHfWVqtZZWzlbZw';
   searchResults: SearchResult[];
+  nextPageToken: string;
+  searchQuery: string;
 
   constructor(private http: HttpClient) {
   }
 
   search(query: string) {
-    return this.http.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&q=${query}&key=${this.apiKey}`);
+    this.searchQuery = query;
+    return this.http.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&q=${query}&key=${this.apiKey}${this.nextPageToken ? '&pageToken=' + this.nextPageToken : ''}`);
   }
 
-  getYoutubeApiKey() {
-    return this.http.get('http://localhost:4201/');
+  searchById(videoId: string) {
+    return this.http.get(`https://www.googleapis.com/youtube/v3/videos?part=snippet&id=${videoId}&key=${this.apiKey}`);
   }
 
 }

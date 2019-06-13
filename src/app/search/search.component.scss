@@ -8,7 +8,7 @@
 
   .search-icon {
     position: absolute;
-    right: 6px;
+    right: 36px;
     top: 2px;
 
     &:hover {
@@ -20,6 +20,5 @@
 .search-results-box {
   display: flex;
   flex-direction: column;
-  align-items: center;
   padding: 30px;
 }
