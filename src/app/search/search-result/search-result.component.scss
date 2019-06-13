@@ -1,0 +1,13 @@
+.result-box {
+  border: 1px solid grey;
+  border-radius: 3px;
+  padding: 20px;
+
+  .video-title {
+    font-weight: 600;
+  }
+
+  .video-details {
+    display: flex;
+  }
+}

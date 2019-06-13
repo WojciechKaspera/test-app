@@ -3,3 +3,6 @@
     <img src="../../assets/images/search-icon.svg" class="search-icon" (click)="search()">
   </app-input>
 </div>
+<div class="search-results-box">
+  <app-search-result *ngFor="let searchResult of searchResults" [data]="searchResult"></app-search-result>
+</div>

@@ -28,7 +28,7 @@ export class EmailComponent {
   }
 
   onKeyup(event: KeyboardEvent) {
-    const inputValue = event.target.value;
+    const inputValue = event.target['value'];
     this.isEmailValid = this.emailRegex.test(inputValue) && inputValue.length > 2;
     if (event.key === 'Enter' && this.isEmailValid) {
       this.authenticationService.credentials.email = inputValue;

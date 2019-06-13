@@ -3,13 +3,16 @@ import {CommonModule} from '@angular/common';
 import {SearchComponent} from './search.component';
 import {SearchService} from './search.service';
 import {InputModule} from '../shared/input/input.module';
+import { SearchResultComponent } from './search-result/search-result.component';
+import {ButtonModule} from '../shared/button/button.module';
 
 @NgModule({
   imports: [
     CommonModule,
     InputModule,
+    ButtonModule,
   ],
-  declarations: [SearchComponent],
+  declarations: [SearchComponent, SearchResultComponent],
   exports: [SearchComponent],
   providers: [SearchService]
 })

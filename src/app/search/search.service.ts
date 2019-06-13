@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {SearchResult} from '../shared/interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -7,6 +8,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 export class SearchService {
 
   apiKey = 'AIzaSyAAXzkAfBkVJ8BLHURcqHfWVqtZZWzlbZw';
+  searchResults: SearchResult[];
 
   constructor(private http: HttpClient) {
   }

@@ -16,7 +16,7 @@ export class SearchComponent implements OnInit {
   }
 
   onKeyup(event: KeyboardEvent) {
-    this.searchQuery = event.target.value;
+    this.searchQuery = event.target['value'];
     if (event.key === 'Enter') {
       this.search();
     }
@@ -25,7 +25,7 @@ export class SearchComponent implements OnInit {
   search() {
     if (this.searchQuery) {
       this.searchService.search(this.searchQuery).subscribe((res: any) => {
-        this.searchResults = res.items.map((searchResult: any) => {
+        this.searchResults = this.searchService.searchResults = res.items.map((searchResult: any) => {
           return {
             title: searchResult.snippet.title,
             description: searchResult.snippet.description,

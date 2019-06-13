@@ -1,0 +1,14 @@
+<div class="result-box">
+  <p class="video-title">
+    {{data.title}}
+  </p>
+  <div class="video-details">
+    <img src="{{data.thumbnail.url}}" [style.width]="data.thumbnail.width" [style.height]="data.thumbnail.height" alt=""
+         class="thumbnail">
+  </div>
+  <app-button [label]="'Watch!'" (clickEvent)="showVideo()"></app-button>
+</div>
+
+<p>
+  {{data.title}}
+</p>
