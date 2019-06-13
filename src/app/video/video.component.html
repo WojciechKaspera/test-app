@@ -1,4 +1,6 @@
 <app-header (logoutEvent)="logout()"></app-header>
+<app-button [label]="'Go Back'" (clickEvent)="goBack()"></app-button>
+
 <div class="video-box" *ngIf="video">
   <p class="title">{{video.title}}</p>
   <p class="description">{{video.description}}</p>

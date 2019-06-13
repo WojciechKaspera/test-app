@@ -16,7 +16,12 @@ export class VideoComponent implements OnInit {
   }
 
   logout() {
-    this.router.navigateByUrl(`/search/${this.searchService.searchQuery}`);
+    this.router.navigateByUrl('login/email');
+  }
+
+  goBack() {
+    const url = this.searchService.searchQuery ? `/search?query=${this.searchService.searchQuery}` : '/search';
+    this.router.navigateByUrl(url);
   }
 
   ngOnInit() {

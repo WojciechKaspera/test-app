@@ -1,20 +1,21 @@
-import {Component, HostListener} from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {SearchService} from './search.service';
 import {SearchResult} from '../shared/interfaces';
 import {AuthenticationService} from '../authentication/authentication.service';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss']
 })
-export class SearchComponent {
+export class SearchComponent implements OnInit {
 
   searchQuery: string;
   searchResults: SearchResult[] = [];
   lazyLoading: boolean;
 
-  constructor(private searchService: SearchService, private authenticationService: AuthenticationService) {
+  constructor(private searchService: SearchService, private authenticationService: AuthenticationService, private route: ActivatedRoute) {
   }
 
   @HostListener('window:scroll', ['$event'])
@@ -71,6 +72,13 @@ export class SearchComponent {
 
   logout() {
     this.authenticationService.logout();
+  }
+
+  ngOnInit() {
+    if (this.route.snapshot.queryParams.query) {
+      this.searchQuery = this.route.snapshot.queryParams.query;
+      this.search();
+    }
   }
 
 }
