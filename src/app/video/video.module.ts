@@ -5,13 +5,15 @@ import {RouterModule} from '@angular/router';
 import {VideoUrl} from './video-url.pipe';
 import {HeaderModule} from '../shared/header/header.module';
 import {ButtonModule} from '../shared/button/button.module';
+import {SearchInputModule} from '../search-input/search-input.module';
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule,
     HeaderModule,
-    ButtonModule
+    ButtonModule,
+    SearchInputModule
   ],
   declarations: [VideoComponent, VideoUrl],
   exports: [VideoComponent]

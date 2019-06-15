@@ -2,7 +2,7 @@ import {Component, HostListener, OnInit} from '@angular/core';
 import {SearchService} from './search.service';
 import {SearchResult} from '../shared/interfaces';
 import {AuthenticationService} from '../authentication/authentication.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-search',
@@ -14,16 +14,19 @@ export class SearchComponent implements OnInit {
   searchQuery: string;
   searchResults: SearchResult[] = [];
   lazyLoading: boolean;
+  dataFetchFailure: boolean;
+  loading: boolean;
 
-  constructor(private searchService: SearchService, private authenticationService: AuthenticationService, private route: ActivatedRoute) {
+  constructor(private searchService: SearchService, private authenticationService: AuthenticationService,
+              private route: ActivatedRoute, private router: Router) {
   }
 
   @HostListener('window:scroll', ['$event'])
-  onWindowScroll(event: Event) {
-    if (!this.lazyLoading) {
+  onWindowScroll() {
+    if (this.searchResults.length && !this.lazyLoading) {
       const documentHeight = document.documentElement.scrollHeight;
       const screenHeight = window.innerHeight;
-      const scrollPosition = window.scrollY;
+      const scrollPosition = window.pageYOffset;
       if (documentHeight - scrollPosition < (1.5 * screenHeight)) {
         this.lazyLoading = true;
         this.lazyLoadSearchResults();
@@ -40,17 +43,25 @@ export class SearchComponent implements OnInit {
 
   search() {
     if (this.searchQuery) {
+      this.loading = true;
+      this.searchResults = [];
       this.searchService.search(this.searchQuery).subscribe((res: any) => {
-        this.searchService.nextPageToken = res.nextPageToken;
-        this.searchService.searchResults = this.searchResults = res.items.map((searchResult: any) => {
-          return {
-            title: searchResult.snippet.title,
-            description: searchResult.snippet.description,
-            thumbnail: searchResult.snippet.thumbnails.default,
-            id: searchResult.id.videoId
-          };
+          this.loading = false;
+          this.router.navigateByUrl(`search?query=${this.searchQuery}`);
+          this.searchService.nextPageToken = res.nextPageToken;
+          this.searchService.searchResults = this.searchResults = res.items.map((searchResult: any) => {
+            return {
+              title: searchResult.snippet.title,
+              description: searchResult.snippet.description,
+              thumbnail: searchResult.snippet.thumbnails.medium,
+              id: searchResult.id.videoId
+            };
+          });
+        },
+        () => {
+          this.loading = false;
+          this.dataFetchFailure = true;
         });
-      });
     }
   }
 
@@ -62,7 +73,7 @@ export class SearchComponent implements OnInit {
         this.searchResults.push({
           title: searchResult.snippet.title,
           description: searchResult.snippet.description,
-          thumbnail: searchResult.snippet.thumbnails.default,
+          thumbnail: searchResult.snippet.thumbnails.medium,
           id: searchResult.id.videoId
         });
       });
@@ -75,6 +86,7 @@ export class SearchComponent implements OnInit {
   }
 
   ngOnInit() {
+    window.scrollTo(0, 0);
     if (this.route.snapshot.queryParams.query) {
       this.searchQuery = this.route.snapshot.queryParams.query;
       this.search();

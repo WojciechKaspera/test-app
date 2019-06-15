@@ -2,19 +2,18 @@
 
 button {
   padding: 10px 20px;
-  border: 2px solid $font-primary;
-  transition: background-color linear 0.3s;
-  background-color: white;
+  border: 1px solid $borders;
+  background-color: $button-background;
   font-size: 1.25rem;
   border-radius: 3px;
 
   &:hover:not(:disabled) {
     cursor: pointer;
-    background-color: $font-secondary;
+    background-color: $button-hover;
   }
 
   &:disabled {
-    background-color: $font-secondary;
+    opacity: 0.3;
   }
 }
 

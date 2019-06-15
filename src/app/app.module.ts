@@ -12,7 +12,7 @@ import {VideoModule} from './video/video.module';
 @NgModule({
   declarations: [
     AppComponent,
-    NotFoundComponent
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,

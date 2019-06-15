@@ -3,6 +3,7 @@ export interface SearchResult {
   id: string;
   description: string;
   thumbnail: Thumbnail;
+  tags?: string[];
 }
 
 export interface Thumbnail {

@@ -1,9 +1,11 @@
 <app-header (logoutEvent)="logout()"></app-header>
-<app-button [label]="'Go Back'" (clickEvent)="goBack()"></app-button>
+<app-search-input (keyUpEvent)="onKeyup($event)" (searchEvent)="search()"></app-search-input>
 
 <div class="video-box" *ngIf="video">
   <p class="title">{{video.title}}</p>
-  <p class="description">{{video.description}}</p>
-  <iframe width="600" height="400" [src]="'https://www.youtube.com/embed/' + video.id | videoUrl">
+  <iframe width="{{videoWidth}}" height="{{videoHeight}}" [src]="'https://www.youtube.com/embed/' + video.id | videoUrl">
   </iframe>
+  <p class="description">{{video.description}}</p>
+  <p class="tags">Tags: <span class="tag" *ngFor="let tag of video.tags">#{{tag}}&nbsp;</span></p>
+  <app-button [label]="'Go back to pick another ' + previousSearchQuery + ' video!'" (clickEvent)="goBack()" *ngIf="previousSearchQuery"></app-button>
 </div>

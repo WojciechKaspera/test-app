@@ -1,9 +1,7 @@
 <app-header (logoutEvent)="logout()"></app-header>
-<div class="search-input-box">
-  <app-input [autofocus]="true" [type]="'text'" [placeholder]="'What video are you looking for?'" (keyupEvent)="onKeyup($event)">
-    <img src="../../assets/images/search-icon.svg" class="search-icon" (click)="search()">
-  </app-input>
-</div>
+<app-search-input (keyUpEvent)="onKeyup($event)" (searchEvent)="search()"></app-search-input>
 <div class="search-results-box">
+  <app-loader *ngIf="loading"></app-loader>
+  <p class="error" *ngIf="dataFetchFailure">CHeck your internet connection!</p>
   <app-search-result *ngFor="let searchResult of searchResults" [data]="searchResult"></app-search-result>
 </div>

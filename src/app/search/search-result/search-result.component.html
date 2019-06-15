@@ -5,6 +5,8 @@
   <div class="video-details">
     <img src="{{data.thumbnail.url}}" [style.width]="data.thumbnail.width" [style.height]="data.thumbnail.height" alt=""
          class="thumbnail">
-    <app-button [label]="'Watch!'" (clickEvent)="showVideo()"></app-button>
+    <div class="button-box">
+      <app-button [label]="'Watch!'" (clickEvent)="showVideo()"></app-button>
+    </div>
   </div>
 </div>

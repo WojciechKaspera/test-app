@@ -6,13 +6,16 @@ import {InputModule} from '../shared/input/input.module';
 import {SearchResultComponent} from './search-result/search-result.component';
 import {ButtonModule} from '../shared/button/button.module';
 import {HeaderModule} from '../shared/header/header.module';
+import {LoaderModule} from '../shared/loader/loader.module';
+import {SearchInputModule} from '../search-input/search-input.module';
 
 @NgModule({
   imports: [
     CommonModule,
-    InputModule,
     ButtonModule,
-    HeaderModule
+    HeaderModule,
+    LoaderModule,
+    SearchInputModule
   ],
   declarations: [SearchComponent, SearchResultComponent],
   exports: [SearchComponent],

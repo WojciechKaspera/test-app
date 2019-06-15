@@ -1,0 +1,37 @@
+@import '../../shared/config';
+
+.spinner-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+
+  .spinner {
+    margin-top: 100px;
+    display: inline-block;
+    width: 64px;
+    height: 64px;
+
+    &:after {
+      content: " ";
+      display: block;
+      width: 46px;
+      height: 46px;
+      margin: 1px;
+      border-radius: 50%;
+      border-width: 5px;
+      border-style: solid;
+      border-color: $font-primary transparent $font-primary transparent;
+      animation: spin 1.2s linear infinite;
+    }
+  }
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+}
